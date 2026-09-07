@@ -330,10 +330,11 @@ for the full discussion.
 
 ## Security
 
-This project has a deliberately small attack surface: the API is **fully read-only** (every
-endpoint is `GET`, there is no authentication, no user input, no database, and no write path), so
-most of the OWASP Top 10 (injection, broken auth, etc.) simply don't apply — there's nowhere for
-untrusted input to enter the system. Specific choices worth noting:
+Full policy: [`SECURITY.md`](SECURITY.md). Summary: this project has a deliberately small attack
+surface — the API is **fully read-only** (every endpoint is `GET`, there is no authentication, no
+user input, no database, and no write path), so most of the OWASP Top 10 (injection, broken auth,
+etc.) simply don't apply — there's nowhere for untrusted input to enter the system. Specific choices
+worth noting:
 
 - **CORS** is restricted to the local Vite dev origins (`localhost:5173` / `127.0.0.1:5173`) and
   `GET` only — see `backend/app/main.py`. Deploying this publicly would require deciding on a real
