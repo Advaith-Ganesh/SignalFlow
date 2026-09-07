@@ -1,5 +1,7 @@
 # SignalFlow
 
+[![CI](https://github.com/Advaith-Ganesh/SignalFlow/actions/workflows/ci.yml/badge.svg)](https://github.com/Advaith-Ganesh/SignalFlow/actions/workflows/ci.yml)
+
 **Information Diffusion and Market Reaction: a historical earnings event study.**
 
 SignalFlow investigates one real, historical earnings event in depth — Meta Platforms' Q4 FY2021
@@ -44,28 +46,32 @@ verifiable from public sources — no paid data vendor required. See
   supported/not-supported conclusion (see `/api/results/hypotheses` or the Results tab).
 - **A FastAPI backend** exposing all of the above as read-only JSON, and a **React + TypeScript
   dashboard** (Plotly charts, quant-research-terminal styling) to explore it interactively.
-- **42+ automated tests** (pytest) covering data validation, returns, abnormal returns, CAR,
+- **55 automated tests** (pytest) covering data validation, returns, abnormal returns, CAR,
   earnings surprise, sentiment, diffusion model fitting, hypothesis logic, and every API endpoint.
 
 ## Technology stack
 
-| Layer | Tools |
-|---|---|
-| Research engine | Python, pandas, NumPy, SciPy, statsmodels/scipy.stats, VADER |
-| API | FastAPI, Uvicorn, Pydantic |
-| Frontend | React, TypeScript, Vite, Plotly.js |
-| Testing | pytest, FastAPI `TestClient` |
-| Data | Yahoo Finance public chart API (no key), manually curated public news metadata |
+| Layer | Tools | Why |
+|---|---|---|
+| Research engine | Python, pandas, NumPy, SciPy (`scipy.stats`, `scipy.optimize`) | pandas/NumPy for the return/CAR time series, `scipy.stats.linregress` for the market model, `scipy.optimize.curve_fit` for the diffusion curves |
+| NLP | VADER (`vaderSentiment`) | Rule-based, no training/GPU/model download needed for 13 short headlines — see `src/signalflow/sentiment.py` for why this beats a transformer here |
+| API | FastAPI, Uvicorn, Pydantic | Async-capable, automatic OpenAPI docs at `/docs`, minimal boilerplate for a small read-only API |
+| Frontend | React, TypeScript, Vite, Plotly.js | Vite for fast dev/build, TypeScript for a typed contract against the API, Plotly for interactive (zoom/hover) financial charts |
+| Testing | pytest, FastAPI `TestClient` | Standard Python testing stack; `TestClient` tests the real ASGI app in-process, no server needed |
+| Tooling | Ruff (lint + format), mypy (type checking) | Fast, single-tool lint+format; mypy catches the kind of type-mismatch bugs unit tests can miss |
+| Data | Yahoo Finance public chart API (no key), manually curated public news metadata | Free, keyless, and stable enough for a fixed historical date range |
 
 ## Repository structure
 
 ```
 SignalFlow/
+├── .github/workflows/  ci.yml — lint, type-check, test, and build on every push/PR
 ├── backend/            FastAPI app (thin read-only layer over src/signalflow)
-│   └── app/
-│       ├── main.py
-│       ├── pipeline_cache.py
-│       └── routers/    event, market, news, diffusion, results
+│   ├── app/
+│   │   ├── main.py
+│   │   ├── pipeline_cache.py
+│   │   └── routers/    event, market, news, diffusion, results
+│   └── requirements.txt  alternative to the root install, for running the API in isolation
 ├── frontend/           React + TypeScript dashboard (Vite)
 │   └── src/
 │       ├── components/ one component per dashboard section
@@ -86,7 +92,7 @@ SignalFlow/
 │   └── README.md        full data provenance and REAL/DERIVED/MODEL/SYNTHETIC labeling
 ├── notebooks/           exploratory_analysis.ipynb (calls src/signalflow, does not duplicate it)
 ├── scripts/             fetch_market_data.py, build_dataset.py
-├── tests/               pytest suite (42+ tests)
+├── tests/               pytest suite (55 tests) + conftest.py
 └── docs/research_report.md
 ```
 
@@ -107,6 +113,10 @@ pip install -e ".[api,dev]"
 cd frontend && npm install && cd ..
 ```
 
+(Alternative: `pip install -r backend/requirements.txt` installs just the API-serving
+dependencies plus the `signalflow` package in editable mode, without the lint/type-check/test
+tooling — useful if you only want to run the server.)
+
 ### 2. Build the dataset (optional — a copy is already checked into `data/processed/`)
 
 ```bash
@@ -114,11 +124,18 @@ python scripts/fetch_market_data.py   # re-fetches real OHLCV from Yahoo Finance
 python scripts/build_dataset.py       # runs the full pipeline, writes data/processed/*.json
 ```
 
-### 3. Run the tests
+### 3. Run the tests, lint, and type checks
 
 ```bash
-pytest -q
+pytest -q                              # 55 tests: unit + API integration
+ruff check src backend scripts tests   # lint
+ruff format --check src backend scripts tests  # formatting
+mypy src/signalflow                    # type check the research package
+cd backend && mypy app && cd ..        # type check the API
 ```
+
+All of the above also run automatically in CI (`.github/workflows/ci.yml`) on every push and pull
+request, alongside a frontend lint + production build check.
 
 ### 4. Run the app
 
@@ -148,6 +165,44 @@ offline.
 ```bash
 jupyter notebook notebooks/exploratory_analysis.ipynb
 ```
+
+## Security
+
+This project has a deliberately small attack surface: the API is **fully read-only** (every
+endpoint is `GET`, there is no authentication, no user input, no database, and no write path), so
+most of the OWASP Top 10 (injection, broken auth, etc.) simply don't apply — there's nowhere for
+untrusted input to enter the system. Specific choices worth noting:
+
+- **CORS** is restricted to the local Vite dev origins (`localhost:5173` / `127.0.0.1:5173`) and
+  `GET` only — see `backend/app/main.py`. Deploying this publicly would require deciding on a real
+  origin policy; it is not currently designed for that.
+- **No secrets**: the app needs no API keys, tokens, or credentials anywhere, so there is nothing
+  to leak. `.gitignore` still excludes `.env*` and virtualenvs as a matter of habit.
+- **External links** (news headline URLs) all use `rel="noreferrer"` to prevent reverse tabnabbing.
+- **Dependencies**: audited with `pip-audit` and `npm audit` — zero known vulnerabilities in the
+  packages this project actually declares as of this writing (see the CI workflow, which currently
+  only runs tests/lint/build, not a dependency audit — see Future Improvements).
+
+## Future Improvements
+
+Realistic next steps, roughly in order of impact:
+
+1. **Cross-sectional extension** — run the same pipeline over 5-10 comparable earnings events so H1
+   ("larger surprise → larger reaction") can be tested properly instead of on a single event.
+2. **Typed API responses** — the FastAPI endpoints currently return plain `dict`s; adding Pydantic
+   response models would give FastAPI's auto-generated `/docs` real schemas instead of "any", at
+   the cost of maintaining a second set of type definitions alongside the TypeScript ones in
+   `frontend/src/api.ts`.
+3. **Frontend bundle size** — `plotly.js-dist-min` ships the full Plotly build (~4.3MB), including
+   3D/WebGL/map chart types this dashboard never uses. A lighter alternative (e.g.
+   `react-chartjs-2`, or a trimmed custom Plotly build) would cut the bundle meaningfully; not done
+   here because it would mean rewriting every chart, for a project whose focus is the analysis, not
+   bundle size.
+4. **Automated dependency scanning in CI** — add `pip-audit`/`npm audit` as a CI job so a newly
+   disclosed vulnerability in a dependency fails the build automatically.
+5. **Intraday data** — if licensed intraday data became available, the diffusion analysis could be
+   re-run at minute-level granularity to actually resolve within-day absorption dynamics (currently
+   the single biggest methodological limitation — see `docs/research_report.md`).
 
 ## Disclaimer
 

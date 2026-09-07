@@ -8,7 +8,10 @@
   --border-soft: #1a2029;
   --text: #e6e9ee;
   --text-muted: #8b93a1;
-  --text-faint: #5b6472;
+  /* WCAG AA requires >=4.5:1 for normal-size text; this is used for 11-12px
+     captions/footnotes, so it must clear that bar rather than the lower
+     3:1 "large text" threshold. #7a838a gives ~4.7:1 on --bg-panel. */
+  --text-faint: #7a838a;
 
   --accent: #4f8cff;
   --accent-dim: #294066;
