@@ -175,11 +175,15 @@ The analytical workflow, in the order `src/signalflow/pipeline.py` actually runs
 The FastAPI backend runs this whole pipeline once per process (cached), then serves slices of the
 result as JSON; the frontend renders those slices as interactive Plotly charts.
 
-## Repository structure
+## Project Structure
+
+<details>
+<summary>Expand full tree</summary>
 
 ```
 SignalFlow/
 ├── .github/workflows/  ci.yml — lint, type-check, test, and build on every push/PR
+├── assets/screenshots/ real screenshots of the running dashboard (used above)
 ├── backend/            FastAPI app (thin read-only layer over src/signalflow)
 │   ├── app/
 │   │   ├── main.py
@@ -206,9 +210,16 @@ SignalFlow/
 │   └── README.md        full data provenance and REAL/DERIVED/MODEL/SYNTHETIC labeling
 ├── notebooks/           exploratory_analysis.ipynb (calls src/signalflow, does not duplicate it)
 ├── scripts/             fetch_market_data.py, build_dataset.py
-├── tests/               pytest suite (55 tests) + conftest.py
-└── docs/research_report.md
+├── tests/               pytest suite (56 tests) + conftest.py
+├── docs/
+│   ├── research_report.md   the full 25-section research write-up
+│   ├── ARCHITECTURE.md      data-flow and sequence diagrams
+│   └── API.md               endpoint-by-endpoint reference
+├── SECURITY.md
+└── CONTRIBUTING.md
 ```
+
+</details>
 
 ## Running it
 
