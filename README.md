@@ -1,11 +1,15 @@
 # SignalFlow
 
-[![CI](https://github.com/Advaith-Ganesh/SignalFlow/actions/workflows/ci.yml/badge.svg)](https://github.com/Advaith-Ganesh/SignalFlow/actions/workflows/ci.yml)
+**Information Diffusion and Market Reaction — a historical earnings event study on Meta Platforms' Q4 FY2021 report.**
 
-**Information Diffusion and Market Reaction: a historical earnings event study.**
+[![CI](https://github.com/Advaith-Ganesh/SignalFlow/actions/workflows/ci.yml/badge.svg)](https://github.com/Advaith-Ganesh/SignalFlow/actions/workflows/ci.yml)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)](pyproject.toml)
+[![TypeScript](https://img.shields.io/badge/frontend-TypeScript-3178c6)](frontend/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 SignalFlow investigates one real, historical earnings event in depth — Meta Platforms' Q4 FY2021
-release on February 2, 2022 — to ask a narrow, answerable question:
+release on February 2, 2022, which triggered a -26.4% single-day stock decline — to ask a narrow,
+answerable question:
 
 > How does newly released earnings information become incorporated into a company's stock price,
 > and how do the timing and intensity of news coverage relate to the speed and magnitude of the
@@ -13,14 +17,34 @@ release on February 2, 2022 — to ask a narrow, answerable question:
 
 This is **not** a stock-price predictor, a trading bot, or a trading platform. It is a reproducible
 research pipeline (event study → sentiment → information-diffusion modeling → hypothesis testing)
-with a small, real, publicly sourced dataset, wrapped in a read-only API and dashboard so the
+built on a small, real, publicly sourced dataset, wrapped in a read-only API and dashboard so the
 results are explorable rather than just printed to a terminal.
 
 The full write-up — background, methodology, results, limitations, references — is in
-[`docs/research_report.md`](docs/research_report.md). This README covers what the project *is* and
-how to run it.
+[`docs/research_report.md`](docs/research_report.md). This README covers what the project *is*,
+how it's built, and how to run it.
 
-## Why this event
+### Contents
+
+- [Why This Event](#why-this-event)
+- [Key Features](#key-features)
+- [Screenshots](#screenshots)
+- [Architecture](#architecture)
+- [Technology Stack](#technology-stack)
+- [How It Works](#how-it-works)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [API](#api)
+- [Testing](#testing)
+- [Example Finding](#example-finding)
+- [Security](#security)
+- [Future Improvements](#future-improvements)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Why This Event
 
 Meta's Q4 FY2021 report produced one of the largest single-day market-capitalization losses in US
 history (-26.4% on Feb 3, 2022, roughly $230B), driven by a small EPS miss, a slight revenue beat,
