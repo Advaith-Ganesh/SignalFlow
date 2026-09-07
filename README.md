@@ -78,6 +78,50 @@ Every item below is implemented and tested — nothing here is aspirational.
 - **CI on every push/PR**: lint, format check, type checking, the full test suite, and a frontend
   production build (`.github/workflows/ci.yml`).
 
+## Screenshots
+
+All captured from the actual running dashboard — not mockups. See
+[`assets/screenshots/`](assets/screenshots/) for the full-resolution files.
+
+<table>
+<tr>
+<td width="50%">
+
+**Event Overview**
+![Event Overview](assets/screenshots/event-overview.png)
+
+</td>
+<td width="50%">
+
+**Market Reaction**
+![Market Reaction](assets/screenshots/market-reaction.png)
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+**News Timeline**
+![News Timeline](assets/screenshots/news-timeline.png)
+
+</td>
+<td width="50%">
+
+**Information Diffusion**
+![Information Diffusion](assets/screenshots/information-diffusion.png)
+
+</td>
+</tr>
+</table>
+
+<details>
+<summary>Results and Limitations tabs</summary>
+
+![Results](assets/screenshots/results.png)
+![Limitations](assets/screenshots/limitations.png)
+
+</details>
+
 ## Technology stack
 
 | Layer | Tools | Why |
