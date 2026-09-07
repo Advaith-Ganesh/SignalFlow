@@ -122,6 +122,23 @@ All captured from the actual running dashboard — not mockups. See
 
 </details>
 
+## Architecture
+
+One research package (`src/signalflow/`) is imported by everything else — the API, the offline
+build script, the notebook, and the test suite — so there is exactly one implementation of every
+calculation. Full diagrams (including a request-lifecycle sequence diagram) are in
+[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md); the high-level shape:
+
+```mermaid
+flowchart LR
+    RAW["data/raw/<br/>(real prices, facts, headlines)"] --> CORE["src/signalflow/<br/>event study · sentiment · diffusion · hypotheses"]
+    CORE --> API["backend/ (FastAPI)"]
+    CORE --> SCRIPT["scripts/build_dataset.py"]
+    CORE --> NB["notebooks/"]
+    CORE -.-> TESTS["tests/ (56 tests)"]
+    API -->|"GET /api/*"| UI["frontend/ (React + Plotly)"]
+```
+
 ## Technology stack
 
 | Layer | Tools | Why |
