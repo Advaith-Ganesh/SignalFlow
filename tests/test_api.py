@@ -18,6 +18,14 @@ def test_health_check():
     assert response.json() == {"status": "ok"}
 
 
+def test_root_index():
+    response = client.get("/")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["docs"] == "/docs"
+    assert "/api/event" in body["endpoints"]
+
+
 def test_get_event_overview():
     response = client.get("/api/event")
     assert response.status_code == 200

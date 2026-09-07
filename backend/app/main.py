@@ -46,3 +46,22 @@ app.include_router(results.router)
 @app.get("/api/health")
 def health_check() -> dict:
     return {"status": "ok"}
+
+
+@app.get("/")
+def root() -> dict:
+    """Basic API index so hitting the bare server URL isn't a bare 404."""
+    return {
+        "name": "SignalFlow Research API",
+        "docs": "/docs",
+        "health": "/api/health",
+        "endpoints": [
+            "/api/event",
+            "/api/market/event-study",
+            "/api/news",
+            "/api/diffusion",
+            "/api/results/hypotheses",
+            "/api/results/limitations",
+            "/api/results/summary",
+        ],
+    }
