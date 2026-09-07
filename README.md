@@ -55,7 +55,9 @@ verifiable from public sources — no paid data vendor required. See
 [`data/raw/earnings_facts.json`](data/raw/earnings_facts.json) for the sourced facts and
 [`docs/research_report.md`](docs/research_report.md#5-background) for the full reasoning.
 
-## What's actually implemented
+## Key Features
+
+Every item below is implemented and tested — nothing here is aspirational.
 
 - **Event study**: market-model abnormal returns, cumulative abnormal returns (CAR), volatility and
   abnormal-volume statistics over a `[-5, +10]` trading-day window, with a standard single-event
@@ -68,10 +70,13 @@ verifiable from public sources — no paid data vendor required. See
   "information absorption time" metric.
 - **Four testable hypotheses**, each with a defined method, real statistic, and an honest
   supported/not-supported conclusion (see `/api/results/hypotheses` or the Results tab).
-- **A FastAPI backend** exposing all of the above as read-only JSON, and a **React + TypeScript
-  dashboard** (Plotly charts, quant-research-terminal styling) to explore it interactively.
-- **55 automated tests** (pytest) covering data validation, returns, abnormal returns, CAR,
+- **A FastAPI backend** exposing all of the above as read-only JSON (docs in [`docs/API.md`](docs/API.md)),
+  and a **React + TypeScript dashboard** (Plotly charts, quant-research-terminal styling) to explore
+  it interactively.
+- **56 automated tests** (pytest) covering data validation, returns, abnormal returns, CAR,
   earnings surprise, sentiment, diffusion model fitting, hypothesis logic, and every API endpoint.
+- **CI on every push/PR**: lint, format check, type checking, the full test suite, and a frontend
+  production build (`.github/workflows/ci.yml`).
 
 ## Technology stack
 
