@@ -8,6 +8,7 @@ events, which this dataset cannot support. Where a test is necessarily
 descriptive/qualitative rather than inferential, that is stated explicitly
 in the result rather than dressed up with a fabricated p-value.
 """
+
 from __future__ import annotations
 
 import numpy as np
@@ -59,7 +60,9 @@ def evaluate_h1_surprise_vs_reaction(earnings_summary: dict, event_study_summary
             "whether *larger* surprises produce *proportionally larger* reactions -- that requires a "
             "cross-sectional sample of many earnings events, which is out of scope here."
             if significant
-            else f"The event-day abnormal return ({ar:.2%}) was not statistically significant at the 5% level."
+            else (
+                f"The event-day abnormal return ({ar:.2%}) was not statistically significant at the 5% level."
+            )
         ),
     }
 
@@ -88,7 +91,15 @@ def evaluate_h2_news_intensity_vs_volume(event_df: pd.DataFrame, info_intensity_
         "statement": "Increased news intensity is associated with increased trading volume.",
         "variables": {"article_count_per_day": "int", "abnormal_volume_ratio": "float"},
         "method": "Pearson correlation, daily article count vs. abnormal volume ratio, event window only",
-        "statistic": {"pearson_r": float(corr), "p_value": float(p_value), "n_trading_days": n, "n_days_with_news": n_days_with_news},
+        "statistic": {
+            "pearson_r": float(corr),
+            "p_value": float(p_value),
+            "n_trading_days": n,
+            "n_days_with_news": n_days_with_news,
+        },
+        # Thresholds are a conventional "moderate correlation, significant at the
+        # 10% level" bar (Cohen, 1988) -- chosen because the sample (n=16, only 5
+        # with news) is too small to justify the stricter 5% level used for H1.
         "supported": bool(not np.isnan(corr) and corr > 0.3 and p_value < 0.10),
         "conclusion": (
             f"Pearson r = {corr:.2f} (p={p_value:.3f}) across {n} event-window trading days, only "
@@ -109,9 +120,15 @@ def evaluate_h3_fast_adjustment(absorption_times: dict) -> dict:
 
     return {
         "hypothesis": "H3",
-        "statement": "The majority of the event-related price adjustment occurs relatively soon after the earnings release.",
+        "statement": (
+            "The majority of the event-related price adjustment occurs relatively "
+            "soon after the earnings release."
+        ),
         "variables": {"information_absorption_time_p50": p50, "information_absorption_time_p90": p90},
-        "method": "Empirical information absorption time: interpolated trading day at which cumulative abnormal return reaches 50%/90% of its eventual (end-of-window) value.",
+        "method": (
+            "Empirical information absorption time: interpolated trading day at which "
+            "cumulative abnormal return reaches 50%/90% of its eventual (end-of-window) value."
+        ),
         "statistic": {"p50_trading_days": p50, "p90_trading_days": p90},
         "supported": bool(supported),
         "conclusion": (
@@ -134,8 +151,14 @@ def evaluate_h4_diffusion_model_fit(diffusion_comparison: dict, r_squared_thresh
     return {
         "hypothesis": "H4",
         "statement": "A diffusion model can approximate the observed cumulative market reaction.",
-        "variables": {"exponential_r_squared": models["exponential"].get("r_squared"), "logistic_r_squared": models["logistic"].get("r_squared")},
-        "method": f"Nonlinear least-squares fit of both candidate curves to the observed absorption-fraction path; R^2 >= {r_squared_threshold} taken as 'approximates well'.",
+        "variables": {
+            "exponential_r_squared": models["exponential"].get("r_squared"),
+            "logistic_r_squared": models["logistic"].get("r_squared"),
+        },
+        "method": (
+            "Nonlinear least-squares fit of both candidate curves to the observed "
+            f"absorption-fraction path; R^2 >= {r_squared_threshold} taken as 'approximates well'."
+        ),
         "statistic": {"better_fit_model": best_name, "r_squared": r_squared},
         "supported": bool(supported),
         "conclusion": (

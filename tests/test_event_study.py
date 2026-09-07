@@ -79,7 +79,9 @@ def test_fit_market_model_recovers_known_beta():
     table = build_event_table(df, event)
     estimation_end = -event.estimation_gap
     estimation_start = estimation_end - event.estimation_window_length
-    estimation_df = table[(table["relative_day"] >= estimation_start) & (table["relative_day"] < estimation_end)]
+    estimation_df = table[
+        (table["relative_day"] >= estimation_start) & (table["relative_day"] < estimation_end)
+    ]
 
     model = fit_market_model(estimation_df)
     assert model.beta == pytest.approx(1.2, abs=0.05)
@@ -91,6 +93,15 @@ def test_fit_market_model_requires_minimum_observations():
     table = build_event_table(df, event)
     with pytest.raises(ValueError):
         fit_market_model(table.head(5))
+
+
+def test_run_event_study_rejects_window_that_excludes_day_zero():
+    df, event = _synthetic_merged_prices()
+    from dataclasses import replace
+
+    bad_event = replace(event, event_window_pre=1, event_window_post=5)
+    with pytest.raises(ValueError, match="must contain day 0"):
+        run_event_study(df, bad_event)
 
 
 def test_run_event_study_recovers_known_shock():

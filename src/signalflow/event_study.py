@@ -17,6 +17,7 @@ Journal of Economic Literature 35(1), 13-39:
    distribution of AR is characterized from the non-event period, not from
    repeated events.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -73,6 +74,12 @@ def build_event_table(merged_prices: pd.DataFrame, event: EventConfig) -> pd.Dat
 
 def run_event_study(merged_prices: pd.DataFrame, event: EventConfig) -> dict:
     """Full event-study pipeline: fit market model, compute AR/CAR over the event window."""
+    if not (event.event_window_pre <= 0 <= event.event_window_post):
+        raise ValueError(
+            "event_window must contain day 0 (event_window_pre <= 0 <= event_window_post), "
+            f"got [{event.event_window_pre}, {event.event_window_post}]"
+        )
+
     df = build_event_table(merged_prices, event)
 
     estimation_end = -event.estimation_gap
@@ -133,7 +140,9 @@ def run_event_study(merged_prices: pd.DataFrame, event: EventConfig) -> dict:
                 "ar_p_value",
                 "volume_company",
             ]
-        ].assign(date=event_df["date"].dt.strftime("%Y-%m-%d")).to_dict(orient="records"),
+        ]
+        .assign(date=event_df["date"].dt.strftime("%Y-%m-%d"))
+        .to_dict(orient="records"),
         "summary": {
             "car_full_window": float(event_df["cumulative_abnormal_return"].iloc[-1]),
             "mean_pre_event_return": float(pre_event["return_company"].mean()) if len(pre_event) else None,
@@ -151,7 +160,9 @@ def run_event_study(merged_prices: pd.DataFrame, event: EventConfig) -> dict:
                 "date": max_abs_car_row["date"].strftime("%Y-%m-%d"),
                 "value": float(max_abs_car_row["cumulative_abnormal_return"]),
             },
-            "event_day_abnormal_return": float(event_df.loc[event_df["relative_day"] == 0, "abnormal_return"].iloc[0]),
+            "event_day_abnormal_return": float(
+                event_df.loc[event_df["relative_day"] == 0, "abnormal_return"].iloc[0]
+            ),
             "event_day_t_stat": float(event_df.loc[event_df["relative_day"] == 0, "ar_t_stat"].iloc[0]),
             "event_day_p_value": float(event_df.loc[event_df["relative_day"] == 0, "ar_p_value"].iloc[0]),
             "event_day_abnormal_volume_ratio": float(
