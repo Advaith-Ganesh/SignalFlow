@@ -1,0 +1,65 @@
+[
+  {
+    "hypothesis": "H1",
+    "statement": "A large earnings-related surprise is associated with a large, statistically significant abnormal return on the event day.",
+    "variables": {
+      "eps_surprise_pct": -4.4271,
+      "revenue_surprise_pct": 0.8084,
+      "event_day_abnormal_return": -0.230897915356573
+    },
+    "method": "Brown & Warner (1985) single-event t-test: AR_0 / sigma(AR_estimation window)",
+    "statistic": {
+      "t_stat": -15.868643682104373,
+      "p_value": 0.0
+    },
+    "supported": true,
+    "conclusion": "The event-day abnormal return (-23.09%) is statistically significant at the 5% level (t=-15.87, p=0.0000). Notably the EPS surprise was small and negative (-4.43%) while revenue was a small beat (0.81%); the huge abnormal return is far larger than either surprise alone would suggest, indicating the market was reacting primarily to forward guidance and the first-ever DAU decline rather than to the earnings/revenue surprise in isolation. With a single event we cannot test whether *larger* surprises produce *proportionally larger* reactions -- that requires a cross-sectional sample of many earnings events, which is out of scope here."
+  },
+  {
+    "hypothesis": "H2",
+    "statement": "Increased news intensity is associated with increased trading volume.",
+    "variables": {
+      "article_count_per_day": "int",
+      "abnormal_volume_ratio": "float"
+    },
+    "method": "Pearson correlation, daily article count vs. abnormal volume ratio, event window only",
+    "statistic": {
+      "pearson_r": 0.6725643053061867,
+      "p_value": 0.0043085612083160856,
+      "n_trading_days": 16,
+      "n_days_with_news": 5
+    },
+    "supported": true,
+    "conclusion": "Pearson r = 0.67 (p=0.004) across 16 event-window trading days, only 5 of which have a curated headline. This sample is far too small (n<20, and highly concentrated on the announcement day itself) to support a causal or even a confidently generalizable correlational claim; the correlation reported here is descriptive of this one event only, not a validated relationship between news flow and volume in general."
+  },
+  {
+    "hypothesis": "H3",
+    "statement": "The majority of the event-related price adjustment occurs relatively soon after the earnings release.",
+    "variables": {
+      "information_absorption_time_p50": 0.0,
+      "information_absorption_time_p90": 2.261729975322584
+    },
+    "method": "Empirical information absorption time: interpolated trading day at which cumulative abnormal return reaches 50%/90% of its eventual (end-of-window) value.",
+    "statistic": {
+      "p50_trading_days": 0.0,
+      "p90_trading_days": 2.261729975322584
+    },
+    "supported": true,
+    "conclusion": "50% of the eventual cumulative abnormal return was absorbed within 0.00 trading day(s), and 90% within 2.26 trading day(s)."
+  },
+  {
+    "hypothesis": "H4",
+    "statement": "A diffusion model can approximate the observed cumulative market reaction.",
+    "variables": {
+      "exponential_r_squared": -5.040741390798645,
+      "logistic_r_squared": 0.5780217417366766
+    },
+    "method": "Nonlinear least-squares fit of both candidate curves to the observed absorption-fraction path; R^2 >= 0.8 taken as 'approximates well'.",
+    "statistic": {
+      "better_fit_model": "logistic",
+      "r_squared": 0.5780217417366766
+    },
+    "supported": false,
+    "conclusion": "The logistic model fit the observed path best (R^2=0.578), which falls short of the R^2 >= 0.8 bar for calling the approximation good. With only 16 daily observations dominated by a single one-day jump, both curves are fitting a near-step function; a strong fit here mainly confirms that absorption was very fast, not that either functional form is mechanistically 'correct'."
+  }
+]

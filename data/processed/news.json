@@ -1,0 +1,192 @@
+{
+  "headlines": [
+    {
+      "date": "2022-01-27",
+      "time_et": NaN,
+      "phase": "pre_announcement",
+      "source": "The Motley Fool",
+      "headline": "Meta Platforms Q4 Earnings Preview: Look for Increased Spending on the Metaverse",
+      "url": "https://www.fool.com/investing/2022/01/27/meta-platforms-facebook-earnings-preview/",
+      "sentiment_compound": 0.2732,
+      "sentiment_positive": 0.16,
+      "sentiment_negative": 0.0,
+      "sentiment_label": "positive"
+    },
+    {
+      "date": "2022-01-31",
+      "time_et": NaN,
+      "phase": "pre_announcement",
+      "source": "FXStreet",
+      "headline": "Meta (FB) Stock: Q4 2021 Earnings Report Preview",
+      "url": "https://www.fxstreet.com/amp/news/meta-fb-stock-q4-2021-earnings-reportppreview-202201311504",
+      "sentiment_compound": 0.0,
+      "sentiment_positive": 0.0,
+      "sentiment_negative": 0.0,
+      "sentiment_label": "neutral"
+    },
+    {
+      "date": "2022-02-02",
+      "time_et": "16:05",
+      "phase": "announcement",
+      "source": "CNBC",
+      "headline": "Facebook-parent Meta (FB) Q4 2021 earnings",
+      "url": "https://www.cnbc.com/2022/02/02/facebook-parent-meta-fb-q4-2021-earnings.html",
+      "sentiment_compound": 0.0,
+      "sentiment_positive": 0.0,
+      "sentiment_negative": 0.0,
+      "sentiment_label": "neutral"
+    },
+    {
+      "date": "2022-02-02",
+      "time_et": "16:10",
+      "phase": "announcement",
+      "source": "CNBC Now (X/Twitter)",
+      "headline": "EARNINGS: Meta Platforms Q4 EPS $3.67 vs. $3.84 Est.; Q4 Revs. $33.67B vs. $33.40B Est.",
+      "url": "https://x.com/cnbcnow/status/1488982205246365696",
+      "sentiment_compound": 0.0,
+      "sentiment_positive": 0.0,
+      "sentiment_negative": 0.0,
+      "sentiment_label": "neutral"
+    },
+    {
+      "date": "2022-02-02",
+      "time_et": "17:30",
+      "phase": "announcement",
+      "source": "The Washington Post",
+      "headline": "Facebook loses users for first time in history",
+      "url": "https://www.washingtonpost.com/technology/2022/02/02/facebook-earnings-meta/",
+      "sentiment_compound": -0.3182,
+      "sentiment_positive": 0.0,
+      "sentiment_negative": 0.247,
+      "sentiment_label": "negative"
+    },
+    {
+      "date": "2022-02-03",
+      "time_et": "00:30",
+      "phase": "immediate_reaction",
+      "source": "The Motley Fool",
+      "headline": "Meta Platforms (FB) Q4 2021 Earnings Call Transcript",
+      "url": "https://www.fool.com/earnings/call-transcripts/2022/02/03/facebook-fb-q4-2021-earnings-call-transcript/",
+      "sentiment_compound": 0.0,
+      "sentiment_positive": 0.0,
+      "sentiment_negative": 0.0,
+      "sentiment_label": "neutral"
+    },
+    {
+      "date": "2022-02-03",
+      "time_et": "09:00",
+      "phase": "immediate_reaction",
+      "source": "CNBC",
+      "headline": "Facebook stock plummets 26% in its biggest one-day drop ever",
+      "url": "https://www.cnbc.com/2022/02/03/facebook-shares-plummet-22percent-after-reporting-weak-guidance.html",
+      "sentiment_compound": -0.7579,
+      "sentiment_positive": 0.0,
+      "sentiment_negative": 0.448,
+      "sentiment_label": "negative"
+    },
+    {
+      "date": "2022-02-03",
+      "time_et": "10:00",
+      "phase": "immediate_reaction",
+      "source": "Bloomberg",
+      "headline": "Meta (FB) Set for $200 Billion Wipeout, Among Worst in History",
+      "url": "https://www.bloomberg.com/news/articles/2022-02-03/meta-set-for-200-billion-wipeout-among-worst-in-market-history",
+      "sentiment_compound": -0.8519,
+      "sentiment_positive": 0.0,
+      "sentiment_negative": 0.48,
+      "sentiment_label": "negative"
+    },
+    {
+      "date": "2022-02-03",
+      "time_et": "11:00",
+      "phase": "immediate_reaction",
+      "source": "Forbes",
+      "headline": "Facebook Loses Daily Active Users For The First Time -- Here's Where They're Going",
+      "url": "https://www.forbes.com/sites/roberthart/2022/02/03/facebook-loses-daily-active-users-for-the-first-time--heres-where-theyre-going/",
+      "sentiment_compound": 0.1027,
+      "sentiment_positive": 0.159,
+      "sentiment_negative": 0.135,
+      "sentiment_label": "positive"
+    },
+    {
+      "date": "2022-02-03",
+      "time_et": "12:00",
+      "phase": "immediate_reaction",
+      "source": "OPB / Associated Press",
+      "headline": "Meta, formerly Facebook, faces historic drop as stock tanks",
+      "url": "https://www.opb.org/article/2022/02/03/meta-facebook-faces-historic-drop-as-stock-tanks/",
+      "sentiment_compound": -0.6908,
+      "sentiment_positive": 0.0,
+      "sentiment_negative": 0.449,
+      "sentiment_label": "negative"
+    },
+    {
+      "date": "2022-02-04",
+      "time_et": "08:00",
+      "phase": "post_announcement",
+      "source": "Gulf News",
+      "headline": "Meta shakes up global tech with worst one-day loss since 2012",
+      "url": "https://gulfnews.com/business/markets/meta-shakes-up-global-tech-with-worst-one-day-loss-since-2012-1.85417971",
+      "sentiment_compound": -0.7506,
+      "sentiment_positive": 0.0,
+      "sentiment_negative": 0.416,
+      "sentiment_label": "negative"
+    },
+    {
+      "date": "2022-02-04",
+      "time_et": "09:30",
+      "phase": "post_announcement",
+      "source": "Benzinga",
+      "headline": "Facebook Parent Meta Shares Plunge As Analysts Slash Price Targets Following Dismal Q4",
+      "url": "https://benzinga.com/z/25388586",
+      "sentiment_compound": -0.8625,
+      "sentiment_positive": 0.1,
+      "sentiment_negative": 0.491,
+      "sentiment_label": "negative"
+    },
+    {
+      "date": "2022-02-25",
+      "time_et": NaN,
+      "phase": "follow_up",
+      "source": "Benzinga",
+      "headline": "How Meta Platforms (FB) Made History In An Unexpected Way",
+      "url": "https://benzinga.com/markets/cryptocurrency/22/02/25449688/how-meta-platforms-fb-made-history-in-an-unexpected-way",
+      "sentiment_compound": 0.0,
+      "sentiment_positive": 0.0,
+      "sentiment_negative": 0.0,
+      "sentiment_label": "neutral"
+    }
+  ],
+  "daily_intensity": [
+    {
+      "date_str": "2022-01-27",
+      "article_count": 1,
+      "mean_sentiment": 0.2732
+    },
+    {
+      "date_str": "2022-01-31",
+      "article_count": 1,
+      "mean_sentiment": 0.0
+    },
+    {
+      "date_str": "2022-02-02",
+      "article_count": 3,
+      "mean_sentiment": -0.10606666666666666
+    },
+    {
+      "date_str": "2022-02-03",
+      "article_count": 5,
+      "mean_sentiment": -0.43957999999999997
+    },
+    {
+      "date_str": "2022-02-04",
+      "article_count": 2,
+      "mean_sentiment": -0.8065500000000001
+    },
+    {
+      "date_str": "2022-02-25",
+      "article_count": 1,
+      "mean_sentiment": 0.0
+    }
+  ]
+}

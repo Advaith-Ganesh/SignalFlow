@@ -1,0 +1,249 @@
+{
+  "market_model": {
+    "alpha": -0.0011104864850672701,
+    "beta": 1.3075494214045245,
+    "resid_std": 0.014550576595085104,
+    "n_obs": 120,
+    "r_squared": 0.35893536039394264,
+    "estimation_window": [
+      -130,
+      -10
+    ]
+  },
+  "event_window": [
+    -5,
+    10
+  ],
+  "daily": [
+    {
+      "date": "2022-01-27",
+      "relative_day": -5,
+      "return_company": 3.4167875864632435e-05,
+      "return_benchmark": -0.00538408875771057,
+      "expected_return": -0.00815044862500233,
+      "abnormal_return": 0.008184616500866963,
+      "cumulative_abnormal_return": 0.008184616500866963,
+      "abnormal_volume_ratio": 1.1423388717542644,
+      "ar_t_stat": 0.5624943071762232,
+      "ar_p_value": 0.574846344569863,
+      "volume_company": 21629900
+    },
+    {
+      "date": "2022-01-28",
+      "relative_day": -4,
+      "return_company": 0.02399516441814198,
+      "return_benchmark": 0.024347646888076113,
+      "expected_return": 0.030725265115998324,
+      "abnormal_return": -0.006730100697856345,
+      "cumulative_abnormal_return": 0.001454515803010618,
+      "abnormal_volume_ratio": 1.1551037622670735,
+      "ar_t_stat": -0.46253154669689445,
+      "ar_p_value": 0.6445519586761534,
+      "volume_company": 21871600
+    },
+    {
+      "date": "2022-01-31",
+      "relative_day": -3,
+      "return_company": 0.03828181606594283,
+      "return_benchmark": 0.018885951732779516,
+      "expected_return": 0.02358382877580236,
+      "abnormal_return": 0.01469798729014047,
+      "cumulative_abnormal_return": 0.01615250309315109,
+      "abnormal_volume_ratio": 1.1396770989704599,
+      "ar_t_stat": 1.0101309177744309,
+      "ar_p_value": 0.3144994149630833,
+      "volume_company": 21579500
+    },
+    {
+      "date": "2022-02-01",
+      "relative_day": -2,
+      "return_company": 0.0183235358256415,
+      "return_benchmark": 0.00686300355780145,
+      "expected_return": 0.00786322984603321,
+      "abnormal_return": 0.010460305979608292,
+      "cumulative_abnormal_return": 0.026612809072759383,
+      "abnormal_volume_ratio": 0.9518900853320871,
+      "ar_t_stat": 0.7188928845020187,
+      "ar_p_value": 0.4736281174244137,
+      "volume_company": 18023800
+    },
+    {
+      "date": "2022-02-02",
+      "relative_day": -1,
+      "return_company": 0.01253908632880596,
+      "return_benchmark": 0.00942251544733641,
+      "expected_return": 0.011209918136272647,
+      "abnormal_return": 0.0013291681925333126,
+      "cumulative_abnormal_return": 0.027941977265292697,
+      "abnormal_volume_ratio": 3.0873553953865858,
+      "ar_t_stat": 0.09134814581727842,
+      "ar_p_value": 0.927370854332314,
+      "volume_company": 58458300
+    },
+    {
+      "date": "2022-02-03",
+      "relative_day": 0,
+      "return_company": -0.26390094709943246,
+      "return_benchmark": -0.024391082077444004,
+      "expected_return": -0.03300303174285944,
+      "abnormal_return": -0.230897915356573,
+      "cumulative_abnormal_return": -0.20295593809128032,
+      "abnormal_volume_ratio": 9.93516726015955,
+      "ar_t_stat": -15.868643682104373,
+      "ar_p_value": 0.0,
+      "volume_company": 188119900
+    },
+    {
+      "date": "2022-02-04",
+      "relative_day": 1,
+      "return_company": -0.0028181044940637223,
+      "return_benchmark": 0.0051569298644233985,
+      "expected_return": 0.005632454175383258,
+      "abnormal_return": -0.00845055866944698,
+      "cumulative_abnormal_return": -0.2114064967607273,
+      "abnormal_volume_ratio": 4.718425325500527,
+      "ar_t_stat": -0.5807713951556677,
+      "ar_p_value": 0.5625020988230864,
+      "volume_company": 89342200
+    },
+    {
+      "date": "2022-02-07",
+      "relative_day": 2,
+      "return_company": -0.0513727848076202,
+      "return_benchmark": -0.0037017126347429485,
+      "expected_return": -0.00595065869883123,
+      "abnormal_return": -0.04542212610878897,
+      "cumulative_abnormal_return": -0.2568286228695163,
+      "abnormal_volume_ratio": 4.679956371220303,
+      "ar_t_stat": -3.121671901588537,
+      "ar_p_value": 0.0022617264231399314,
+      "volume_company": 88613800
+    },
+    {
+      "date": "2022-02-08",
+      "relative_day": 3,
+      "return_company": -0.021030715008584666,
+      "return_benchmark": 0.008401207191663262,
+      "expected_return": 0.00987450711749156,
+      "abnormal_return": -0.030905222126076225,
+      "cumulative_abnormal_return": -0.2877338449955925,
+      "abnormal_volume_ratio": 5.0029551047217025,
+      "ar_t_stat": -2.123986078772672,
+      "ar_p_value": 0.03575910565198237,
+      "volume_company": 94729700
+    },
+    {
+      "date": "2022-02-09",
+      "relative_day": 4,
+      "return_company": 0.053683548000178716,
+      "return_benchmark": 0.014517207887505545,
+      "expected_return": 0.017871480288649808,
+      "abnormal_return": 0.03581206771152891,
+      "cumulative_abnormal_return": -0.2519217772840636,
+      "abnormal_volume_ratio": 4.571663413022063,
+      "ar_t_stat": 2.461212961390514,
+      "ar_p_value": 0.015293508698380975,
+      "volume_company": 86563300
+    },
+    {
+      "date": "2022-02-10",
+      "relative_day": 5,
+      "return_company": -0.016939758086485845,
+      "return_benchmark": -0.01811572566845976,
+      "expected_return": -0.024797693101184917,
+      "abnormal_return": 0.007857935014699072,
+      "cumulative_abnormal_return": -0.24406384226936456,
+      "abnormal_volume_ratio": 2.604227791240435,
+      "ar_t_stat": 0.5400428610748887,
+      "ar_p_value": 0.5901852318178533,
+      "volume_company": 49310400
+    },
+    {
+      "date": "2022-02-11",
+      "relative_day": 6,
+      "return_company": -0.037357081700207906,
+      "return_benchmark": -0.01896945434456343,
+      "expected_return": -0.02591398553766073,
+      "abnormal_return": -0.011443096162547177,
+      "cumulative_abnormal_return": -0.25550693843191175,
+      "abnormal_volume_ratio": 2.437682146920439,
+      "ar_t_stat": -0.7864359249112113,
+      "ar_p_value": 0.4331886679350032,
+      "volume_company": 46156900
+    },
+    {
+      "date": "2022-02-14",
+      "relative_day": 7,
+      "return_company": -0.008426104876796736,
+      "return_benchmark": -0.0038405967262932217,
+      "expected_return": -0.006132256512380083,
+      "abnormal_return": -0.0022938483644166533,
+      "cumulative_abnormal_return": -0.2578007867963284,
+      "abnormal_volume_ratio": 2.0166097614443355,
+      "ar_t_stat": -0.15764656124977686,
+      "ar_p_value": 0.8750047591869117,
+      "volume_company": 38184000
+    },
+    {
+      "date": "2022-02-15",
+      "relative_day": 8,
+      "return_company": 0.015158321178313505,
+      "return_benchmark": 0.01576672117072042,
+      "expected_return": 0.019505280659154682,
+      "abnormal_return": -0.004346959480841177,
+      "cumulative_abnormal_return": -0.2621477462771696,
+      "abnormal_volume_ratio": 2.254347265140692,
+      "ar_t_stat": -0.2987482628220722,
+      "ar_p_value": 0.765657605634007,
+      "volume_company": 42685500
+    },
+    {
+      "date": "2022-02-16",
+      "relative_day": 9,
+      "return_company": -0.020180917472727322,
+      "return_benchmark": 0.0008812077558950637,
+      "expected_return": 4.173620629049977e-05,
+      "abnormal_return": -0.02022265367901782,
+      "cumulative_abnormal_return": -0.2823703999561874,
+      "abnormal_volume_ratio": 2.419757430991406,
+      "ar_t_stat": -1.389818028644214,
+      "ar_p_value": 0.1672006291945587,
+      "volume_company": 45817500
+    },
+    {
+      "date": "2022-02-17",
+      "relative_day": 10,
+      "return_company": -0.04077772872900409,
+      "return_benchmark": -0.021173138152195015,
+      "expected_return": -0.028795411025287924,
+      "abnormal_return": -0.011982317703716168,
+      "cumulative_abnormal_return": -0.29435271765990356,
+      "abnormal_volume_ratio": 2.0463698599299285,
+      "ar_t_stat": -0.8234943560768277,
+      "ar_p_value": 0.4118881755505379,
+      "volume_company": 38747500
+    }
+  ],
+  "summary": {
+    "car_full_window": -0.29435271765990356,
+    "mean_pre_event_return": 0.018634754102879382,
+    "mean_post_event_return": -0.013006132599699826,
+    "volatility_pre_event": 0.01412424221812451,
+    "volatility_post_event": 0.030428600711503866,
+    "volatility_estimation_window": 0.01809659284058945,
+    "max_abs_abnormal_return": {
+      "relative_day": 0,
+      "date": "2022-02-03",
+      "value": -0.230897915356573
+    },
+    "max_abs_cumulative_abnormal_return": {
+      "relative_day": 10,
+      "date": "2022-02-17",
+      "value": -0.29435271765990356
+    },
+    "event_day_abnormal_return": -0.230897915356573,
+    "event_day_t_stat": -15.868643682104373,
+    "event_day_p_value": 0.0,
+    "event_day_abnormal_volume_ratio": 9.93516726015955
+  }
+}
