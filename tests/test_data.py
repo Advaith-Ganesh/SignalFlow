@@ -97,7 +97,15 @@ def test_load_earnings_facts_requires_fields(tmp_path):
 def test_load_news_headlines_happy_path(tmp_path):
     path = tmp_path / "news.csv"
     pd.DataFrame(
-        [{"date": "2022-02-02", "phase": "announcement", "source": "Test", "headline": "Test headline", "url": "http://x"}]
+        [
+            {
+                "date": "2022-02-02",
+                "phase": "announcement",
+                "source": "Test",
+                "headline": "Test headline",
+                "url": "http://x",
+            }
+        ]
     ).to_csv(path, index=False)
     df = load_news_headlines(path)
     assert len(df) == 1

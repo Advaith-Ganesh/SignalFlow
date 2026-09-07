@@ -5,6 +5,7 @@ study over HTTP for the React dashboard. All computation lives in the
 `signalflow` package (src/signalflow/); this app is a thin read-only view
 over `signalflow.pipeline.run_full_pipeline()`.
 """
+
 from __future__ import annotations
 
 import logging

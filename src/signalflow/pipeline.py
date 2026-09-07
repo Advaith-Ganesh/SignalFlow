@@ -6,9 +6,11 @@ scripts/build_dataset.py (offline, writes JSON to data/processed/) and the
 FastAPI backend (can run this live) call into this module so there is one
 source of truth for "how the numbers are computed".
 """
+
 from __future__ import annotations
 
 import logging
+
 import pandas as pd
 
 from signalflow import config, diffusion, earnings, event_study, hypotheses, sentiment
@@ -57,7 +59,9 @@ def run_full_pipeline(event: config.EventConfig = config.DEFAULT_EVENT) -> dict:
         "earnings_surprise": earnings_summary,
         "event_study": study,
         "news": {
-            "headlines": scored_news.assign(date=scored_news["date"].dt.strftime("%Y-%m-%d")).to_dict(orient="records"),
+            "headlines": scored_news.assign(date=scored_news["date"].dt.strftime("%Y-%m-%d")).to_dict(
+                orient="records"
+            ),
             "daily_intensity": info_intensity.to_dict(orient="records"),
         },
         "diffusion": diffusion_comparison,

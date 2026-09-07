@@ -8,6 +8,7 @@ pipeline never has to touch the network again.
 Usage:
     python scripts/fetch_market_data.py
 """
+
 from __future__ import annotations
 
 import csv

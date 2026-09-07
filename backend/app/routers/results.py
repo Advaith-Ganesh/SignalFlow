@@ -84,6 +84,8 @@ def get_results_summary(result: dict = Depends(get_research_result)) -> dict:
         "car_full_window": event_summary["car_full_window"],
         "better_fit_model": diffusion_result["better_fit_model"],
         "model_metrics": diffusion_result["models"],
-        "information_absorption_time_trading_days": diffusion_result["information_absorption_time_trading_days"],
+        "information_absorption_time_trading_days": diffusion_result[
+            "information_absorption_time_trading_days"
+        ],
         "hypotheses": result["hypotheses"],
     }

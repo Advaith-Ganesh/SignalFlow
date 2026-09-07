@@ -1,4 +1,5 @@
 """Loading and validating the real, raw input data."""
+
 from __future__ import annotations
 
 import json
@@ -24,9 +25,7 @@ def load_price_series(csv_path: Path) -> pd.DataFrame:
     contains non-positive prices, or is not sorted/unique by date.
     """
     if not csv_path.exists():
-        raise FileNotFoundError(
-            f"Price file not found: {csv_path}. Run scripts/fetch_market_data.py first."
-        )
+        raise FileNotFoundError(f"Price file not found: {csv_path}. Run scripts/fetch_market_data.py first.")
 
     df = pd.read_csv(csv_path)
     missing = REQUIRED_PRICE_COLUMNS - set(df.columns)
@@ -85,9 +84,11 @@ def merge_price_series(company: pd.DataFrame, benchmark: pd.DataFrame) -> pd.Dat
     are kept, so market-model regressions never pair a company return with a
     missing/misaligned benchmark observation.
     """
-    merged = company.merge(
-        benchmark, on="date", suffixes=("_company", "_benchmark"), how="inner"
-    ).sort_values("date").reset_index(drop=True)
+    merged = (
+        company.merge(benchmark, on="date", suffixes=("_company", "_benchmark"), how="inner")
+        .sort_values("date")
+        .reset_index(drop=True)
+    )
 
     if len(merged) < len(company) - 3 and len(merged) < len(benchmark) - 3:
         logger.warning(

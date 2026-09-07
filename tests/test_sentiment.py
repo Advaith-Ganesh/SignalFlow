@@ -1,6 +1,11 @@
 import pandas as pd
 
-from signalflow.sentiment import classify_compound, daily_information_intensity, score_headline, score_headlines
+from signalflow.sentiment import (
+    classify_compound,
+    daily_information_intensity,
+    score_headline,
+    score_headlines,
+)
 
 
 def test_score_headline_negative():
@@ -27,7 +32,9 @@ def test_score_headlines_adds_expected_columns():
         }
     )
     scored = score_headlines(df)
-    assert {"sentiment_compound", "sentiment_positive", "sentiment_negative", "sentiment_label"} <= set(scored.columns)
+    assert {"sentiment_compound", "sentiment_positive", "sentiment_negative", "sentiment_label"} <= set(
+        scored.columns
+    )
     assert len(scored) == 2
 
 

@@ -32,6 +32,7 @@ explicit when neither fits well -- with only 16 daily observations spanning a
 single-day, near-instantaneous jump, a poor logistic fit is itself an
 informative result about market efficiency, not a modelling failure.
 """
+
 from __future__ import annotations
 
 import numpy as np
@@ -160,9 +161,7 @@ def compare_diffusion_models(daily_event_records: list[dict], thresholds: tuple[
     else:
         better = None
 
-    absorption_times = {
-        f"p{int(p * 100)}": empirical_absorption_time(t, fraction, p) for p in thresholds
-    }
+    absorption_times = {f"p{int(p * 100)}": empirical_absorption_time(t, fraction, p) for p in thresholds}
 
     return {
         "observed": absorption,

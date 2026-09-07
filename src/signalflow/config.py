@@ -4,6 +4,7 @@ All "magic numbers" that shape the research design live here, each with a
 short justification, so the reasoning behind the design is auditable in one
 place rather than scattered through the codebase.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass

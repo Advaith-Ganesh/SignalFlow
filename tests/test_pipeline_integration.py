@@ -6,6 +6,7 @@ just a unit in isolation) is caught. It only checks broad, robust properties
 of the real Meta Platforms Q4 2021 event -- not exact floating point values,
 since those would make the test brittle to any methodological refinement.
 """
+
 from signalflow.pipeline import run_full_pipeline
 
 

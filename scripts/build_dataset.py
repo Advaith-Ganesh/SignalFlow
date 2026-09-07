@@ -8,6 +8,7 @@ directly.
 Usage:
     python scripts/build_dataset.py
 """
+
 from __future__ import annotations
 
 import json

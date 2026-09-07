@@ -5,6 +5,7 @@ dataset), so re-running it on every request would be wasteful for no benefit.
 `get_research_result` is a FastAPI dependency; `reset_cache` exists purely for
 tests that need a fresh run.
 """
+
 from __future__ import annotations
 
 from functools import lru_cache

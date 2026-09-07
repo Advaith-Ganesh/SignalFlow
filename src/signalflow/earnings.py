@@ -1,4 +1,5 @@
 """Earnings and revenue surprise calculations."""
+
 from __future__ import annotations
 
 

@@ -93,7 +93,10 @@ def test_empirical_absorption_time_returns_none_if_never_reached():
 
 def test_compare_diffusion_models_end_to_end():
     records = [
-        {"relative_day": d, "cumulative_abnormal_return": -0.30 * exponential_absorption(np.array([float(d)]), 0.5)[0]}
+        {
+            "relative_day": d,
+            "cumulative_abnormal_return": -0.30 * exponential_absorption(np.array([float(d)]), 0.5)[0],
+        }
         for d in range(0, 12)
     ]
     result = compare_diffusion_models(records, thresholds=(0.5, 0.9))

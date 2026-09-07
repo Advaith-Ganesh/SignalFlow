@@ -1,19 +1,13 @@
 """API tests using FastAPI's TestClient (httpx under the hood), against the
 real dataset -- no mocking, since the whole point of the API is to expose the
 real pipeline output over HTTP.
+
+See conftest.py for how backend/app becomes importable as `app`.
 """
-import sys
-from pathlib import Path
 
 import pytest
-
-BACKEND_DIR = Path(__file__).resolve().parent.parent / "backend"
-if str(BACKEND_DIR) not in sys.path:
-    sys.path.insert(0, str(BACKEND_DIR))
-
-from fastapi.testclient import TestClient
-
 from app.main import app
+from fastapi.testclient import TestClient
 
 client = TestClient(app)
 
