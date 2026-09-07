@@ -151,6 +151,30 @@ flowchart LR
 | Tooling | Ruff (lint + format), mypy (type checking) | Fast, single-tool lint+format; mypy catches the kind of type-mismatch bugs unit tests can miss |
 | Data | Yahoo Finance public chart API (no key), manually curated public news metadata | Free, keyless, and stable enough for a fixed historical date range |
 
+## How It Works
+
+The analytical workflow, in the order `src/signalflow/pipeline.py` actually runs it:
+
+1. **Load & validate** (`data.py`) — read the real OHLCV/facts/headline files, reject anything with
+   non-positive prices, duplicate dates, or missing required columns.
+2. **Earnings surprise** (`earnings.py`) — `(actual - estimate) / |estimate|` for EPS and revenue.
+3. **Event study** (`event_study.py`) — fit `R_company = α + β·R_market + e` on a 120-day estimation
+   window, use it to predict expected returns in the `[-5, +10]` event window, and take
+   `abnormal return = actual - expected`. Significance is tested against the estimation window's
+   own residual standard deviation (Brown & Warner, 1985) — the standard way to get a p-value from a
+   sample of exactly one event.
+4. **Sentiment** (`sentiment.py`) — score each real headline with VADER, aggregate into daily
+   article counts and mean sentiment ("information intensity").
+5. **Diffusion modeling** (`diffusion.py`) — normalize the post-event cumulative abnormal return
+   into a 0→1 "fraction absorbed" path, fit both an exponential and a logistic curve to it with
+   `scipy.optimize.curve_fit`, and compare them by RMSE/MAE/R².
+6. **Hypothesis testing** (`hypotheses.py`) — evaluate H1-H4 against the outputs of steps 2-5, each
+   with an explicit method and an honest supported/not-supported verdict (see
+   [Example Finding](#example-finding)).
+
+The FastAPI backend runs this whole pipeline once per process (cached), then serves slices of the
+result as JSON; the frontend renders those slices as interactive Plotly charts.
+
 ## Repository structure
 
 ```
