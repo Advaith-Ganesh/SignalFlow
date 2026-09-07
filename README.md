@@ -367,6 +367,11 @@ Realistic next steps, roughly in order of impact:
    re-run at minute-level granularity to actually resolve within-day absorption dynamics (currently
    the single biggest methodological limitation — see `docs/research_report.md`).
 
+## Contributing
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) — short version: bug reports, methodology critique, and
+the extensions listed above are welcome; run the checks in [Testing](#testing) before opening a PR.
+
 ## Disclaimer
 
 This is a historical, explanatory research project, not investment advice and not a forecasting
